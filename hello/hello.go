@@ -1,7 +1,5 @@
-package main
+package hello
 
-import "fmt"
-
-func main() {
-	fmt.Println("Hello World")
+func square(x int) int {
+	return x * x
 }
