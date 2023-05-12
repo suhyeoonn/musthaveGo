@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"strconv"
 )
@@ -45,8 +46,12 @@ func MakeWebHandler() http.Handler {
 }
 
 func main() {
-	http.ListenAndServe(":3000", MakeWebHandler())
+	//http.ListenAndServe(":3000", MakeWebHandler())
+	err := http.ListenAndServeTLS(":3000", "server.crt", "server.key", MakeWebHandler())
 
+	if err != nil {
+		log.Fatal(err)
+	}
 	//http.Handle("/", http.FileServer(http.Dir("static")))
 	//http.ListenAndServe(":3000", nil)
 }
